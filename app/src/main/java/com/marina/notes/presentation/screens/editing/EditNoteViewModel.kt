@@ -1,21 +1,23 @@
 package com.marina.notes.presentation.screens.editing
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.marina.notes.data.NotesRepositoryImpl
 import com.marina.notes.domain.DeleteNoteUseCase
 import com.marina.notes.domain.EditNoteUseCase
 import com.marina.notes.domain.GetNoteUseCase
 import com.marina.notes.domain.Note
-import com.marina.notes.data.TestNoteRepositoryImpl
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class EditNoteViewModel(
-    private val noteId: Int
+    private val noteId: Int,
+    context: Context
 ) : ViewModel() {
-    private val repository = TestNoteRepositoryImpl
+    private val repository = NotesRepositoryImpl.getInstance(context)
     private val editNoteUseCase = EditNoteUseCase(repository)
     private val getNoteUseCase = GetNoteUseCase(repository)
     private val deleteNoteUseCase = DeleteNoteUseCase(repository)

@@ -52,6 +52,7 @@ dependencies {
     implementation(libs.navigation.compose)
     implementation(libs.room.runtime)
     ksp(libs.androidx.room.compiler)
+    implementation(libs.room.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)

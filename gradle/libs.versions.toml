@@ -12,7 +12,7 @@ viewmodelCompose = "2.10.0"
 iconRef = "1.7.8"
 navCompose = "2.9.8"
 room = "2.8.4"
-ksp = "2.1.20-2.0.0"
+ksp = "2.2.10-2.0.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }

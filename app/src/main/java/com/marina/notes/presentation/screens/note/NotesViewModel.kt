@@ -1,12 +1,13 @@
 package com.marina.notes.presentation.screens.note
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.marina.notes.data.NotesRepositoryImpl
 import com.marina.notes.domain.GetAllNotesUseCase
 import com.marina.notes.domain.Note
 import com.marina.notes.domain.SearchNotesUseCase
 import com.marina.notes.domain.SwitchPinnedStatusUseCase
-import com.marina.notes.data.TestNoteRepositoryImpl
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -17,8 +18,8 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class NotesViewModel : ViewModel() {
-    private val repository = TestNoteRepositoryImpl
+class NotesViewModel(context: Context) : ViewModel() {
+    private val repository = NotesRepositoryImpl.getInstance(context)
 
     private val getAllNotesUseCase = GetAllNotesUseCase(repository)
     private val searchNotesUseCase = SearchNotesUseCase(repository)
