@@ -1,8 +1,9 @@
 package com.marina.notes.domain
 
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class SearchNotesUseCase(
+class SearchNotesUseCase @Inject constructor(
     private val repository: NoteRepository
 ) {
     operator fun invoke(query: String): Flow<List<Note>> {

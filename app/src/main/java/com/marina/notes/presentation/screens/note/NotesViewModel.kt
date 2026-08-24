@@ -1,13 +1,12 @@
 package com.marina.notes.presentation.screens.note
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.marina.notes.data.NotesRepositoryImpl
 import com.marina.notes.domain.GetAllNotesUseCase
 import com.marina.notes.domain.Note
 import com.marina.notes.domain.SearchNotesUseCase
 import com.marina.notes.domain.SwitchPinnedStatusUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -16,15 +15,15 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
+@HiltViewModel
 @OptIn(ExperimentalCoroutinesApi::class)
-class NotesViewModel(context: Context) : ViewModel() {
-    private val repository = NotesRepositoryImpl.getInstance(context)
-
-    private val getAllNotesUseCase = GetAllNotesUseCase(repository)
-    private val searchNotesUseCase = SearchNotesUseCase(repository)
-    private val switchPinnedStatusUseCase = SwitchPinnedStatusUseCase(repository)
-
+class NotesViewModel @Inject constructor(
+    private val getAllNotesUseCase: GetAllNotesUseCase,
+    private val searchNotesUseCase: SearchNotesUseCase,
+    private val switchPinnedStatusUseCase: SwitchPinnedStatusUseCase
+) : ViewModel() {
     private val query = MutableStateFlow("")
 
     private val _state = MutableStateFlow(NotesScreenState())

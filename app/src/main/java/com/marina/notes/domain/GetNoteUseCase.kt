@@ -1,6 +1,8 @@
 package com.marina.notes.domain
 
-class GetNoteUseCase(
+import javax.inject.Inject
+
+class GetNoteUseCase @Inject constructor(
     private val repository: NoteRepository
 ) {
     suspend operator fun invoke(noteId: Int): Note {
