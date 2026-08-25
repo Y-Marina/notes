@@ -2,6 +2,7 @@ package com.marina.notes.presentation.screens.editing
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.marina.notes.domain.ContentItem
 import com.marina.notes.domain.DeleteNoteUseCase
 import com.marina.notes.domain.EditNoteUseCase
 import com.marina.notes.domain.GetNoteUseCase
@@ -43,7 +44,8 @@ class EditNoteViewModel @AssistedInject constructor(
             is EditNoteCommand.InputContent -> {
                 _state.update { previousState ->
                     if (previousState is EditNoteState.Editing) {
-                        val newNote = previousState.note.copy(content = command.content)
+                        val newContent = ContentItem.Text(content = command.content)
+                        val newNote = previousState.note.copy(content = listOf(newContent))
                         previousState.copy(note = newNote)
                     } else {
                         previousState
@@ -119,7 +121,17 @@ sealed interface EditNoteState {
         val note: Note
     ) : EditNoteState {
         val isSaveEnabled: Boolean
-            get() = note.title.isNotBlank() && note.content.isNotBlank()
+            get() {
+                return when {
+                    note.title.isBlank() -> false
+                    note.content.isEmpty() -> false
+                    else -> {
+                        note.content.any {
+                            it !is ContentItem.Text || it.content.isNotBlank()
+                        }
+                    }
+                }
+            }
     }
 
     data object Finished : EditNoteState

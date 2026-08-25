@@ -27,7 +27,7 @@ interface DataModule {
                 context = context,
                 klass = NotesDataBase::class.java,
                 name = "notes.db"
-            ).build()
+            ).fallbackToDestructiveMigration(dropAllTables = true).build()
         }
 
         @Singleton

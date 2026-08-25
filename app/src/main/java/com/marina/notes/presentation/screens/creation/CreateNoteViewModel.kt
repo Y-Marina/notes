@@ -3,6 +3,7 @@ package com.marina.notes.presentation.screens.creation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.marina.notes.domain.AddNoteUseCase
+import com.marina.notes.domain.ContentItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -54,8 +55,8 @@ class CreateNoteViewModel @Inject constructor(
                     _state.update { previousState ->
                         if (previousState is CreateNoteState.Creation) {
                             val title = previousState.title
-                            val content = previousState.content
-                            addNoteUseCase(title, content)
+                            val content = ContentItem.Text(content = previousState.content)
+                            addNoteUseCase(title, listOf(content))
                             CreateNoteState.Finished
                         } else {
                             previousState
