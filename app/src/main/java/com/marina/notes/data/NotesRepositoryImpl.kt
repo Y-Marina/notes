@@ -1,5 +1,6 @@
 package com.marina.notes.data
 
+import com.marina.notes.domain.ContentItem
 import com.marina.notes.domain.Note
 import com.marina.notes.domain.NoteRepository
 import kotlinx.coroutines.flow.Flow
@@ -11,11 +12,12 @@ class NotesRepositoryImpl @Inject constructor(
 ) : NoteRepository {
     override suspend fun addNote(
         title: String,
-        content: String,
+        content: List<ContentItem>,
         isPinned: Boolean,
         updateAt: Long
     ) {
-        val noteDbModel = NoteDbModel(0, title, content, updateAt, isPinned)
+        val note = Note(0, title, content, updateAt, isPinned)
+        val noteDbModel = note.toDbModel()
         notesDao.addNote(noteDbModel)
     }
 

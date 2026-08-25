@@ -3,7 +3,12 @@ package com.marina.notes.domain
 import kotlinx.coroutines.flow.Flow
 
 interface NoteRepository {
-    suspend fun addNote(title: String, content: String, isPinned: Boolean, updateAt: Long)
+    suspend fun addNote(
+        title: String,
+        content: List<ContentItem>,
+        isPinned: Boolean,
+        updateAt: Long
+    )
 
     suspend fun deleteNote(noteId: Int)
 
