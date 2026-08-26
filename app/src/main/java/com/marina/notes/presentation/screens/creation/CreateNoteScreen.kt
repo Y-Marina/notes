@@ -25,11 +25,13 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import com.marina.notes.R
 import com.marina.notes.presentation.ui.theme.Content
 import com.marina.notes.presentation.ui.theme.CustomIcons
 import com.marina.notes.presentation.utils.DateFormater
@@ -61,7 +63,7 @@ fun CreateNoteScreen(
                     TopAppBar(
                         title = {
                             Text(
-                                text = "Create note",
+                                text = stringResource(R.string.create_note),
                                 fontSize = 20.sp,
                                 color = MaterialTheme.colorScheme.onSurface
                             )
@@ -167,7 +169,7 @@ fun CreateNoteScreen(
                         )
                     ) {
                         Text(
-                            text = "Save Note"
+                            text = stringResource(R.string.save_note)
                         )
                     }
                 }
