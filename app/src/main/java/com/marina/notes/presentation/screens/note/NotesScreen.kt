@@ -318,7 +318,7 @@ fun NoteCardWithImage(
                     .fillMaxWidth()
                     .clip(RoundedCornerShape(16.dp))
                     .background(
-                        brush = Brush.horizontalGradient(
+                        brush = Brush.verticalGradient(
                             listOf(
                                 Color.Transparent,
                                 MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
