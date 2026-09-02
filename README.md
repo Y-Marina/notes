@@ -5,13 +5,21 @@
 
 ## стек:
 Kotlin
+
 Jetpack Compose
+
 MVVM Architecture
+
 Room Database
+
 Dagger Hilt
+
 Navigation Compose
+
 Splash Screen API
+
 External Storage
+
 Internal Storage
 
 ## [apk для установки](/notes.apk)
