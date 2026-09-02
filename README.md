@@ -23,3 +23,6 @@ External Storage
 Internal Storage
 
 ## [apk для установки](/notes.apk)
+
+![demo](demoo.gif)
+
